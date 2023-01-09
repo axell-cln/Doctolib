@@ -1,0 +1,55 @@
+.vaccination-center-detail {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+//   style="width: 400px;  padding-top:10px; padding-bottom:10px;border: 3px solid #A0A0A0; text-align: center;background: #C0C0C0;"
+    
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .vaccination-center-detail h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .vaccination-center-detail ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .vaccination-center-detail li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .vaccination-center-detail li:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #006699;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .vaccination-center-detail a {
+    font-size: 14px;
+    color: #006699;
+    text-decoration: none;
+  }
+  
+  .vaccination-center-detail a:hover {
+    text-decoration: underline;
+  }
+  
+  

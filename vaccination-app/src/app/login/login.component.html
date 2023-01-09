@@ -1,0 +1,22 @@
+<div class="login-page">
+  <header class="banner">
+    <h1>Doctolib SIA Beta</h1>
+    
+    <a routerLink="/signup">
+      <button class="create-user-btn">Créer un utilisateur</button>
+  </a>
+  </header>
+
+  <label for="username">Nom d'utilisateur :</label>
+  <div class = username>
+    <input [(ngModel)]="username" placeholder="Nom d'utilisateur"/>
+  </div>
+  <br>
+  <label for="password">Mot de passe :</label>
+  <div class = password>
+    <input [(ngModel)]="password" placeholder="Mot de passe" type="password"/>
+  </div>
+  <div class = button>
+    <button (click)="connect()">Login</button>
+  </div>
+</div>

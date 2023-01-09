@@ -1,0 +1,18 @@
+
+
+    <div>
+        {{tempsRestant}} secondes restantes
+    </div>
+    <!-- <mat-card-content>
+        <mat-progress-bar mode="determinate" [value]="progressbarValue"></mat-progress-bar>
+    </mat-card-content> -->
+    <div>
+        <ng-container *ngIf="finishedTimer">
+            <button mat-raised-button color="primary" (click)="backToHome()">revenir a l'acceuil</button>
+        </ng-container>
+    </div>
+
+
+
+
+    

@@ -1,0 +1,20 @@
+
+<div  *ngIf="centerVac "
+    class="vaccination-center-detail "
+    >
+   
+    <h2>{{centerVac.name | uppercase}}</h2>
+    <div>{{centerVac.address | lowercase}}
+        <span>{{centerVac.postalCode}} {{centerVac.city}}</span>
+    </div>
+    <div>Ouvert depuis le {{centerVac.openingDate | date:'dd/MM/Y'}} </div>
+
+
+  <br>
+    <div>
+        <button (click)="delete()">Supprimer</button>
+       
+    </div>
+</div>
+
+
