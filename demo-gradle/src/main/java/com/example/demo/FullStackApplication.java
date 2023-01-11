@@ -23,9 +23,9 @@ public class FullStackApplication {
         @CrossOrigin(origins = "http://localhost:4200/*")
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200/*")
+                .allowedOrigins("http://localhost:4200/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
-			registry.addMapping("/**").allowedOrigins("http://localhost:4200/*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH").allowedHeaders("access-control-allow-origin");
+			//registry.addMapping("/**").allowedOrigins("http://localhost:4200/*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH").allowedHeaders("access-control-allow-origin");
         }
 
     }
