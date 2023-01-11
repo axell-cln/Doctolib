@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { config } from 'rxjs';
 import { LoginService } from '../login.service';
+import { NewUserService } from '../new-user.service';
 import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 
 @Component({
@@ -14,7 +15,7 @@ import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 export class NewUserComponent implements OnInit {
  
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: NewUserService) { }
 
 
   
@@ -77,33 +78,18 @@ export class NewUserComponent implements OnInit {
 
     const body = JSON.stringify(newUser)
   
-    // send the POST request using the HttpClient service
-    this.http.post('http://localhost:8080/api/public/users', body, { headers }).subscribe((response) => {
-      // handle the response here
-      console.log(response);
-    });
-  }
-  onSubmit(form: NgForm) {
-    const newUser = {
-      login: form.value.username,
-      password: form.value.password,
-      email: form.value.email,
-      // autres champs du formulaire...
-    };
-
-    const basicAuth = 'Basic ' + btoa("Merlin" + ':' + "1234");
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Authorization', basicAuth)
-      .set('Autre', "Pourquoi ca ne marche pas pnt");
-
-    const body = JSON.stringify(newUser)
-  
-    // send the POST request using the HttpClient service
-    this.http.post('http://localhost:8080/api/public/users', body, { headers }).subscribe((response) => {
-      // handle the response here
-      console.log(response);
-    });
-  }
-
-}
+    // // send the POST request using the HttpClient service
+    // this.http.post('http://localhost:8080/api/public/users', body, { headers }).subscribe((response) => {
+    //   // handle the response here
+    //   console.log(response);
+    // });
+    this.service.getQuiSertDePost().subscribe(
+      value=>{
+         return value;
+   },
+     error=>{console.log("Error")});
+     
+     
+   }
+ }
+ 
