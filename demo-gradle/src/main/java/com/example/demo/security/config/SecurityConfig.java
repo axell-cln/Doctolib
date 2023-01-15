@@ -21,12 +21,13 @@ public class SecurityConfig {
     
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
-        http
-        .authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
-        .httpBasic(withDefaults())
+       
+      //  http.authorizeHttpRequests((authz) -> authz.anyRequest().authenticated());
+        http.httpBasic(withDefaults())
                 .cors().disable()
-                .csrf().disable() //Desactivation de la protection csrf
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//On rend les session stateless
+                .csrf().disable().authorizeRequests().antMatchers("/api/public/**").permitAll(); //Desactivation de la protection csrf
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//On rend les session stateless
+        
         return http.build();
     }
 

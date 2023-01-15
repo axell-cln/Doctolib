@@ -20,6 +20,7 @@ export class VaccinationService {
 
   getAllVaccinationCenter(city?: string): Observable<VaccinationCenter[]>{
 
+    
     let params =  new HttpParams();
     if(city){
      params = params.set('city',city);
@@ -33,6 +34,35 @@ export class VaccinationService {
       map((resp )=> {
         if (!!resp.body) {
           return resp.body;
+        }
+        return [];
+      }
+    ), catchError(
+      (err) => {
+      const temps = err.headers.get('X-Rate-Limit-Retry-After-Seconds')
+      console.log(temps)
+      this.router.navigate(['/waiting', temps]);
+      return [];
+    }));
+  }
+
+  
+  getAllVaccinationCenterByCity(city?: string): Observable<VaccinationCenter[]>{
+
+    
+    let params =  new HttpParams();
+    if(city){
+     params = params.set('city',city);
+    }
+    else{
+      params = params.set('city','*');
+    }
+
+    return this.httpClient.get<VaccinationCenter[]>("api/public/centers/city/{city}", {params: params, observe: 'response'})
+    .pipe(
+      map((resp )=> {
+        if (!!resp.body) {
+          console.log(resp.body);
         }
         return [];
       }

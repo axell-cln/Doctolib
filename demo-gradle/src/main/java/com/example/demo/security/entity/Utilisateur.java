@@ -27,6 +27,7 @@ public class Utilisateur {
     public void setEmail(String email) {
         this.email = email;
     }
+    
 
     public void setId(final Long id) {
         this.id = id;
@@ -36,8 +37,8 @@ public class Utilisateur {
         return login;
     }
     
-    public void setLogin(final String email) {
-        this.login = email;
+    public void setLogin(final String login) {
+        this.login = login;
     }
     
     public String getPassword() {

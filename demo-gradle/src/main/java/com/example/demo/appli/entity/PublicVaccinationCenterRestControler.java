@@ -5,6 +5,7 @@ import io.github.bucket4j.*;
 
 import org.springframework.http.HttpStatus;
 
+import java.sql.Date;
 import java.time.Duration;
 //import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,7 +28,9 @@ public class PublicVaccinationCenterRestControler {
 
     @Autowired
     private VaccinationCenterRepository centerRepository;  
-
+    public PublicVaccinationCenterRestControler(VaccinationCenterRepository centerRepository) {
+        this.centerRepository = centerRepository;
+    }
      //rajoute 10 tokens toutes les minutes
      Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
      //capacité max de 10 token
@@ -49,5 +55,13 @@ public class PublicVaccinationCenterRestControler {
                 .build();
     }
 
+    @CrossOrigin(exposedHeaders = {remainning, retryAfter})
+    @GetMapping(path = "/api/public/centers/city/{city}")
+    public List<VaccinationCenter> findAllCentersByCity(@PathVariable String city) {
+        List<VaccinationCenter> centers = centerRepository.trouverParVille(city);
+            return centers;
+    }
 
+    
+   
 }

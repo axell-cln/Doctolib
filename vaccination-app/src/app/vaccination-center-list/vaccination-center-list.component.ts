@@ -16,8 +16,9 @@ import { Router } from '@angular/router';
 export class VaccinationCenterListComponent implements OnInit {
 
   centers: VaccinationCenter[] = [];
-  selected?: VaccinationCenter
-
+  selected?: VaccinationCenter;
+  p: number = 1;
+  citySearchTerm?: string;
 
   constructor(private service: VaccinationService) { 
  
@@ -33,6 +34,26 @@ export class VaccinationCenterListComponent implements OnInit {
         this.centers = resultCenters;
       }  
     })
+  }
+
+  
+  getResult() {
+    if (this.citySearchTerm === '') {
+      console.log("rien");
+      return;
+    } else {
+      console.log("qlqchose");
+      this.service
+        .getAllVaccinationCenterByCity(this.citySearchTerm)
+        .subscribe(resultCenters=>{
+          if (resultCenters == null){
+            this.centers = [];
+          }
+          else{
+            this.centers = resultCenters;
+          }  
+        });
+    }
   }
 
   isSpecialCenter(center: VaccinationCenter){

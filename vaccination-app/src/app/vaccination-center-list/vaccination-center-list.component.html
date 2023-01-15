@@ -1,20 +1,35 @@
 
 <h3>Liste des centres</h3>
-
-
+<button mat-button color="primary"> <a mat-button routerLink="/connection">Se connecter</a></button>
+<button mat-button color="primary"> <a mat-button routerLink="/signup">S'inscrire</a></button>
+<button mat-button color="primary"> <a mat-button routerLink="/admin">Admin</a></button>
+<form class="search-center-form" (submit)="getResult()">
+<div class="title">Trouvez un centre de vaccination près de chez vous</div>
+     <input name="search_item" class="search-input" [(ngModel)]="citySearchTerm" placeholder="Ex: Nancy" /> 
+     <button type="submit">Rechercher le centre</button>
+     <h1>{{citySearchTerm}}</h1>
+</form>
 <div class="vaccination-center-list">
-    <ul *ngFor="let aCenter of centers" class="vaccination-center" >
-        <button (click)="selectCenter(aCenter)">{{aCenter.name}}</button>
-      <br>
-     
-        <a routerLink="/centers/detail/{{aCenter.id}}">
+    <ul *ngFor="let aCenter of centers | paginate: {itemsPerPage:12,currentPage: p}" class="vaccination-center" >
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{aCenter.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button><a routerLink="/centers/detail/{{aCenter.id}}">
             Aller sur {{aCenter.name}}
-        </a>
-    <br>
-    <br>
+        </a></button>
+          <button mat-button><a routerLink="/centers/rendezvous/{{aCenter.id}}">
+            Prendre rendez-vous 
+        </a></button>
+          <button mat-button (click)="selectCenter(aCenter)">{{aCenter.name}}</button>
+        </mat-card-actions>
+      </mat-card>   
     </ul>
-</div>
+  </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
+<!-- 
 <div>
     <table>
         <tr>
@@ -29,7 +44,7 @@
         </tr>
       </table>
       
-</div>
+</div> -->
 
 <app-vaccination-center (deleted)="onDeleted($event)" [centerVac]="selected">
 

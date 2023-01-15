@@ -1,3 +1,12 @@
+* {
+  font-family: Raleway /* Replace with your custom font */, sans-serif !important; 
+  /* Add !important to overwrite all elements */
+}
+
+mat-button{
+  position : absolute;
+  right:800px;
+}
 ul {
     display: block;
     list-style-type: disc;
@@ -9,7 +18,9 @@ ul {
     width: 10em;
     
 }
-
+mat-card{
+  background-color: #7393B3;
+}
 // table {
 //     border-collapse: collapse;
 //     width: 100%;
