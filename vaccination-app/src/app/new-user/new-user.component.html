@@ -14,26 +14,26 @@
     <button (click)="createAccount()">Créer mon compte</button>
 
 </div>-->
-<!-- 
+
    <div class="newUser" ><br>
     <div>
         <label>Type d'utilisateur:</label>
         <input type="radio" name="userType" value="medecin" [(ngModel)]="userType" > Médecin
         <input type="radio" name="userType" value="patient" [(ngModel)]="userType"> Patient
-      </div> <br> <br> -->
+      </div> <br> <br> 
 
-      <!-- <div *ngIf="userType === 'medecin'">
+       <div *ngIf="userType === 'medecin'">
         <label>Numéro de licence:</label>
         <input type="text" name="licenceNumber" >
       </div>
- -->
-     <!--  <div *ngIf="userType === 'patient'">
-        <label>Date de naissance</label>
-        <input type="text" name="birthDates" >
-      </div> -->
-<!-- 
+ 
+      <div *ngIf="userType === 'patient'">
+          <label>Date de naissance</label>
+          <input type="text" name="birthDates" >
+        </div> 
+
     <label for="username">Nom d'utilisateur :</label>
-    <input [(ngModel)]="username" type="text" ><br><br>
+    <input [(ngModel)]="login" type="text" ><br><br>
 
     <label for="email">Adresse email :</label>
     <input [(ngModel)]="email" type="email" ><br> <br>
@@ -46,10 +46,10 @@
 
     <button (click)="createAccount()">Créer mon compte</button>
    </div>
-   -->
+  
 
    
-   <div>
+   <!-- <div>
     <form (submit)="createAccount()">
       <label>Email:</label>
       <input [(ngModel)]="newUser.email" name="username">
@@ -59,4 +59,4 @@
       <input [(ngModel)]="newUser.login" name="login">
       <button type="submit">Créer utilisateur</button>
     </form>
-  </div>
+  </div> -->

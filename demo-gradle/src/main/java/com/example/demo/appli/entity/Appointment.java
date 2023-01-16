@@ -1,7 +1,6 @@
 package com.example.demo.appli.entity;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
@@ -13,24 +12,48 @@ public class Appointment {
     @Id
     private Integer id_appointment;
     private String date;
-    private String prenom;
-    private String nom;
-    private String datenaissance;
-/*     private String centerString; */
+    private Integer id_patient;
+    private Integer id_doctor;
+    
     @ManyToOne(optional = true)
     @JoinColumn(name = "id_vaccination_center", nullable = false, foreignKey = @ForeignKey(name = "adresse_fk"))
     private VaccinationCenter center;
+
+    public Integer getId_patient() {
+        return id_patient;
+    }
+
+    public void setId_patient(Integer id_patient) {
+        this.id_patient = id_patient;
+    }
+
+    public Integer getId_doctor() {
+        return id_doctor;
+    }
+
+    public void setId_doctor(Integer id_doctor) {
+        this.id_doctor = id_doctor;
+    }
+
  
+    public VaccinationCenter getCenter() {
+        return center;
+    }
+
+    public void setCenter(VaccinationCenter center) {
+        this.center = center;
+    }
+
     public Appointment() {
     }
 
-    public Appointment(Integer id_appointment, String date, String center, String prenom, String nom, String datenaissance) {
+    public Appointment(Integer id_appointment, String date, Integer idPersonne, Integer idDoc, VaccinationCenter center) {
         this.id_appointment = id_appointment;
-        this.prenom=prenom;
-        this.nom=nom;
-        this.datenaissance=datenaissance;
+        this.id_doctor = idDoc;
+        this.id_patient = idPersonne;
         this.date = date;
-        /* this.centerString = center; */
+        this.center = center;
+        
     }
 
     public Integer getId_appointment() {
@@ -49,45 +72,14 @@ public class Appointment {
         this.date = date;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+    // public VaccinationCenter getCenter() {
+    //     return center;
+    // }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getDatenaissance() {
-        return datenaissance;
-    }
-
-    public void setDatenaissance(String datenaissance) {
-        this.datenaissance = datenaissance;
-    }
-
-   /*  public String getCenterString() {
-        return centerString;
-    }
-
-    public void setCenter(String center) {
-        this.centerString = center;
-    } */
-
-    public VaccinationCenter getCenter() {
-        return center;
-    }
-
-    public void setCenter(VaccinationCenter center) {
-        this.center = center;
-    } 
+    // public void setCenter(VaccinationCenter center) {
+    //     this.center = center;
+    // } 
 
     
 }

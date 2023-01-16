@@ -14,6 +14,7 @@ public interface VaccinationCenterRepository extends JpaRepository<VaccinationCe
     @Query("SELECT id FROM VaccinationCenter u WHERE u.id=1")
     public List<VaccinationCenter> trouverParVille(String city);
 
+    
   //  @Query("FROM VaccinationCenter SELECT *")
     //public List<VaccinationCenter> monFind(@Param("city") String city);
 }

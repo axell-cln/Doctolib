@@ -5,17 +5,16 @@ import io.github.bucket4j.*;
 
 import org.springframework.http.HttpStatus;
 
-import java.sql.Date;
 import java.time.Duration;
 //import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,6 +59,11 @@ public class PublicVaccinationCenterRestControler {
     public List<VaccinationCenter> findAllCentersByCity(@PathVariable String city) {
         List<VaccinationCenter> centers = centerRepository.trouverParVille(city);
             return centers;
+    }
+
+    @GetMapping(path = "/api/public/centersID")
+    public Optional<VaccinationCenter> function( @RequestParam Integer id){
+        return centerRepository.findById(id);
     }
 
     

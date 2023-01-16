@@ -17,15 +17,15 @@ import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 export class NewUserComponent implements OnInit {
  
 
-  constructor(private service: NewUserService, private http: HttpClient) { }
+  constructor(private service: NewUserService, private http: HttpClient, private router: Router) { }
 
 
-  newUser = {email: '', password: '', login:''};
- /*  username: string = "";
+  //newUser = {email: '', password: '', login:''};
+  login: string = "";
   email: string = "";
   password: string = "";
   passwordConfirm: string = "";
- */
+ 
 
   @Input() userType?: string;
   
@@ -36,45 +36,47 @@ export class NewUserComponent implements OnInit {
   createAccount() {
     // récupérez les valeurs du formulaire
     
-    /* const username = this.username;
+    const login = this.login;
     const email = this.email;
     const password = this.password;
     const passwordConfirm = this.passwordConfirm;
- */
+ 
     // validez les valeurs du formulaire
-    if (this.newUser.login === '') {
+    if (login === '') {
       // le nom d'utilisateur est vide, affichez une erreur
       console.log('Le nom d\'utilisateur ne peut pas être vide');
       return;
     }
-    if (this.newUser.email === '') {
+    if (email === '') {
       // l'adresse email est vide, affichez une erreur
       console.log('L\'adresse email ne peut pas être vide');
       return;
     }
-    if (this.newUser.password === '') {
+    if (password === '') {
       // le mot de passe est vide, affichez une erreur
       console.log('Le mot de passe ne peut pas être vide');
       return;
     }
-
-   const body=JSON.stringify(this.newUser);
+       if (password !== passwordConfirm) {
+      // les mots de passe ne correspondent pas, affichez une erreur
+      console.log('Les mots de passe ne correspondent pas');
+      return;
+    } 
+  const newUser = {login: login, email: email, password: password};
+   const body=JSON.stringify(newUser);
    const parametres = new HttpParams()
-      .append('login', this.newUser.login)
-      .append('email', this.newUser.email)
-      .append('password', this.newUser.password);
+      .append('login', newUser.login)
+      .append('email', newUser.email)
+      .append('password', newUser.password);
 
     this.http.post('http://localhost:8080/api/public/users', body,{
       params: parametres,
     })
       .subscribe(response => {
         console.log(response);
+        this.router.navigate(["connection"])
       });
-   /*  if (this.newUser.password !== passwordConfirm) {
-      // les mots de passe ne correspondent pas, affichez une erreur
-      console.log('Les mots de passe ne correspondent pas');
-      return;
-    } */
+ 
 
     
 
