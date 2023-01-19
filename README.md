@@ -1,6 +1,6 @@
 # Doctolib
 - COULON Axel 5A SIA 
-- LIMON Merlin 5A SIA
+- LIMON Merlin 5A SIA 31816581
 
 Prérequis : 
 - lancer le fichier python qui va importer les centres de vaccinnation en france sur la bdd (qu'il faut aupréables spécifier le login et le password dans le back et lancer le back une fois pour que les tables de la bdd se crée)
